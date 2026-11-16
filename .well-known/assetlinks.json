@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.emberbox.quest",
+      "sha256_cert_fingerprints": [
+        "BB:EB:62:12:76:F3:C1:C5:78:34:0E:08:09:75:35:D1:B0:3E:21:E1:93:05:0B:2F:C9:46:33:28:8D:23:61:3F"
+      ]
+    }
+  }
+]
