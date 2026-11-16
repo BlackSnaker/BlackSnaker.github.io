@@ -1,0 +1,5 @@
+const CACHE='ember-quest-c1b0084927fd',ASSETS=["/","/demo-cover.png","/manifest.webmanifest","/icon-192.png","/icon-512.png","/assets/index-DfvNdyOd.js","/assets/three-CJjoJLw7.js","/assets/index-CMheX-OX.css"];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
+self.addEventListener('activate',e=>e.waitUntil(Promise.all([self.clients.claim(),caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('ember-quest-')&&k!==CACHE).map(k=>caches.delete(k))))])));
+self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET'||u.origin!==location.origin||u.pathname.startsWith('/api/'))return;
+e.respondWith((async()=>{const c=await caches.open(CACHE);try{const r=await fetch(e.request);if(r.ok&&ASSETS.includes(u.pathname))await c.put(u.pathname,r.clone());return r;}catch{const r=await c.match(u.pathname);return r||(e.request.mode==='navigate'?await c.match('/'):null)||Response.error();}})());});
